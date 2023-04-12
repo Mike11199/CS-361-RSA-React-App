@@ -19,7 +19,6 @@ if (process.env.NODE_ENV === "production") {
 //allows front and back end to communicate with cross origin resource sharing between diff domains
 // app.use(cors())
 
-
  // parses incoming JSON requests and puts the parsed data in req.
 app.use(express.json()) 
 
