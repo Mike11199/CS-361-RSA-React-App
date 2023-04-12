@@ -8,13 +8,19 @@ import path from 'path'
 const app = express()
 
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "./frontend/build")));
-    app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, "./frontend", "build", "index.html")));
-} else {
-   app.get("/", (req,res) => {
-      res.json({ message: "API running..." }); 
-   }) 
-}
+   app.use(express.static(path.join(new URL("./frontend/build", import.meta.url).pathname)));
+   app.get("*", (req, res) =>
+     res.sendFile(
+       path.resolve(
+         new URL("./frontend/build/index.html", import.meta.url).pathname
+       )
+     )
+   );
+ } else {
+   app.get("/", (req, res) => {
+     res.json({ message: "API running..." });
+   });
+ }
 
 
 //allows front and back end to communicate with cross origin resource sharing between diff domains
