@@ -16,10 +16,23 @@ const generateRSAKeys = () => {
   console.log(privateKey)
   const private_key_field = document.getElementById("rsa_private_key_field")
   const public_key_field = document.getElementById("rsa_public_key_field")
-  private_key_field.innerText = privateKey
-  public_key_field.innerText = publicKey
+  private_key_field.value = privateKey
+  public_key_field.value = publicKey
   // console.log(publicKey_B64)
   // console.log(privateKey_B64)
+}
+
+const encryptWithRSAPublicKey = () => {
+  let public_key_field = document.getElementById("rsa_public_key_field")
+  let rsa_public_key_from_textarea = public_key_field.value  //has to be innerHTML not innerText for some reason
+  console.log(rsa_public_key_from_textarea)
+
+  //check if empty
+  if (!rsa_public_key_from_textarea) {
+    console.log("RSA public key is empty");
+    window.alert("RSA public key is empty!");
+    return;
+  }
 }
 
 
@@ -33,12 +46,12 @@ const RSAPage = () => {
       <button onClick={()=> generateRSAKeys()}>Generate RSA Key Pair</button>
       <br></br>
       <p>RSA Private Key</p>
-      <textarea id="rsa_private_key_field"></textarea>
+      <textarea id="rsa_private_key_field" style={{height:'450px'}}></textarea>
       <p>RSA Public Key</p>
-      <textarea id="rsa_public_key_field"></textarea>
+      <textarea id="rsa_public_key_field" style={{height:'150px'}}></textarea>
       <br></br>
       <br></br>
-      <button>Encrypt with RSA Public Key</button>
+      <button onClick={()=> encryptWithRSAPublicKey()}>Encrypt with RSA Public Key</button>
       <br></br>
       <br></br>
       <p>Text to Encrypt</p>      
