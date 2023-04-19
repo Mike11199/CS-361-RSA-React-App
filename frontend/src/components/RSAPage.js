@@ -25,7 +25,7 @@ const generateRSAKeys = () => {
 const encryptWithRSAPublicKey = () => {
   let public_key_field = document.getElementById("rsa_public_key_field")
   let rsa_public_key_from_textarea = public_key_field.value  //has to be innerHTML not innerText for some reason
-  console.log(rsa_public_key_from_textarea)
+  // console.log(rsa_public_key_from_textarea)
 
     //check if RSA public key is empty
     if (!rsa_public_key_from_textarea) {
@@ -62,6 +62,52 @@ const encryptWithRSAPublicKey = () => {
 }
 
 
+const decryptWithPrivateKey = () => {
+
+  // <textarea id="rsa_private_key_field" style={{height:'450px'}}></textarea>
+  // <textarea id="text_to_decrypt_with_private_key"></textarea>
+  // <p>Text Decrypted with Private Key</p>
+  // <textarea id="decrypted_text_using_private_key"></textarea>
+
+  let private_key_field = document.getElementById("rsa_private_key_field")
+  let rsa_private_key_from_textarea = private_key_field.value  //has to be innerHTML not innerText for some reason
+  // console.log(rsa_private_key_from_textarea)
+
+  //check if RSA private key is empty
+  if (!rsa_private_key_from_textarea) {
+    console.log("RSA private key is empty");
+    window.alert("RSA private key is empty!");
+    return;
+  }
+
+  
+  let text_to_decrypt_with_private_key_field = document.getElementById("text_to_decrypt_with_private_key")
+  let text_to_decrypt_with_private_key= text_to_decrypt_with_private_key_field.value
+
+      //check if text to encrypt with RSA public key is empty
+      if (!text_to_decrypt_with_private_key) {
+        console.log("Text to decrypt with RSA private key is empty");
+        window.alert("Text to decrypt with RSA private key is empty!");
+        return;
+      }
+    
+
+
+  let crypt3 = new JSEncrypt()
+
+  
+  // reference https://www.npmjs.com/package/jsencrypt
+  crypt3.setPrivateKey(rsa_private_key_from_textarea)
+  let decrypted_string_with_private_key = crypt3.decrypt(text_to_decrypt_with_private_key)
+
+  
+  // set field to decrypted text
+  let decrypted_text_with_private_key_field = document.getElementById("decrypted_text_using_private_key")
+  decrypted_text_with_private_key_field.value = decrypted_string_with_private_key
+
+
+}
+
 
 const RSAPage = () => {
   return (
@@ -77,7 +123,7 @@ const RSAPage = () => {
       <textarea id="rsa_public_key_field" style={{height:'150px'}}></textarea>
       <br></br>
       <br></br>
-      <button onClick={()=> encryptWithRSAPublicKey()}>Encrypt with RSA Public Key</button>
+      <button onClick={()=> encryptWithRSAPublicKey()}>Encrypt Text with RSA Public Key</button>
       <br></br>
       <br></br>
       <p>Text to Encrypt</p>      
@@ -86,13 +132,13 @@ const RSAPage = () => {
       <textarea id="text_encrypted_with_pub_key"></textarea>
       <br></br>
       <br></br>
-      <button>Decrypt with RSA Public Key</button>
+      <button onClick={()=> decryptWithPrivateKey()}>Decrypt Text with RSA Private Key</button>
       <br></br>
       <br></br>
       <p>Text to Decrypt</p>      
-      <textarea></textarea>
+      <textarea id="text_to_decrypt_with_private_key"></textarea>
       <p>Text Decrypted with Private Key</p>
-      <textarea></textarea>
+      <textarea id="decrypted_text_using_private_key"></textarea>
       <br></br>
       <br></br>
       <br></br>
