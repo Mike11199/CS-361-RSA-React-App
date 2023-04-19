@@ -27,12 +27,38 @@ const encryptWithRSAPublicKey = () => {
   let rsa_public_key_from_textarea = public_key_field.value  //has to be innerHTML not innerText for some reason
   console.log(rsa_public_key_from_textarea)
 
-  //check if empty
-  if (!rsa_public_key_from_textarea) {
-    console.log("RSA public key is empty");
-    window.alert("RSA public key is empty!");
-    return;
-  }
+    //check if RSA public key is empty
+    if (!rsa_public_key_from_textarea) {
+      console.log("RSA public key is empty");
+      window.alert("RSA public key is empty!");
+      return;
+    }
+  
+  let text_to_encrypt_with_pub_key_field = document.getElementById("text_to_encrypt_with_pub_key")
+  let text_to_encrypt_with_pub_key= text_to_encrypt_with_pub_key_field.value
+
+      //check if text to encrypt with RSA public key is empty
+      if (!text_to_encrypt_with_pub_key) {
+        console.log("Text to encrypt with RSA public key is empty");
+        window.alert("Text to encrypt with RSA public key is empty!");
+        return;
+      }
+    
+
+  let crypt2 = new JSEncrypt() 
+
+  // reference https://www.npmjs.com/package/jsencrypt
+  crypt2.setPublicKey(rsa_public_key_from_textarea)
+
+  // window.alert(text_to_encrypt_with_pub_key);
+  let encrypted_string_with_public_key = crypt2.encrypt(text_to_encrypt_with_pub_key)
+  // console.log(encrypted_string_with_public_key)
+  // window.alert(encrypted_string_with_public_key);
+
+  // set field to encrypted text
+  let encrypted_text_with_pub_key_field = document.getElementById("text_encrypted_with_pub_key")
+  encrypted_text_with_pub_key_field.value = encrypted_string_with_public_key
+
 }
 
 
@@ -55,9 +81,9 @@ const RSAPage = () => {
       <br></br>
       <br></br>
       <p>Text to Encrypt</p>      
-      <textarea></textarea>
+      <textarea id="text_to_encrypt_with_pub_key"></textarea>
       <p>Text Encrypted with Public Key</p>
-      <textarea></textarea>
+      <textarea id="text_encrypted_with_pub_key"></textarea>
       <br></br>
       <br></br>
       <button>Decrypt with RSA Public Key</button>
