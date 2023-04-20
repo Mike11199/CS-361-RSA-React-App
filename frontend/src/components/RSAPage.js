@@ -115,7 +115,7 @@ const RSAPage = () => {
     <div class="pageContainer">
       <h1>RSA Page</h1>
       <p>This is the RSA page.</p>
-      <button onClick={()=> generateRSAKeys()}>Generate RSA Key Pair</button>
+      <button class="button_purple" onClick={()=> generateRSAKeys()}>Generate RSA Key Pair</button>
       <br></br>
       <p>RSA Private Key</p>
       <textarea id="rsa_private_key_field" style={{height:'450px'}}></textarea>
@@ -123,7 +123,7 @@ const RSAPage = () => {
       <textarea id="rsa_public_key_field" style={{height:'150px'}}></textarea>
       <br></br>
       <br></br>
-      <button onClick={()=> encryptWithRSAPublicKey()}>Encrypt Text with RSA Public Key</button>
+      <button class="button_green" onClick={()=> encryptWithRSAPublicKey()}>Encrypt Text with RSA Public Key</button>
       <br></br>
       <br></br>
       <p>Text to Encrypt</p>      
@@ -132,7 +132,7 @@ const RSAPage = () => {
       <textarea id="text_encrypted_with_pub_key"></textarea>
       <br></br>
       <br></br>
-      <button onClick={()=> decryptWithPrivateKey()}>Decrypt Text with RSA Private Key</button>
+      <button class="button_red" onClick={()=> decryptWithPrivateKey()}>Decrypt Text with RSA Private Key</button>
       <br></br>
       <br></br>
       <p>Text to Decrypt</p>      

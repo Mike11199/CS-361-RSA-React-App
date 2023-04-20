@@ -25,14 +25,14 @@ const AESPage = () => {
     <div class="pageContainer">
       <h1>AES Page</h1>
       <p>This is the AES page.</p>
-      <button onClick={()=> generateAESKey()}>Generate New AES Key</button>
+      <button class="button_purple" onClick={()=> generateAESKey()}>Generate New AES Key</button>
       <br></br>
       <p>AES Symmetric Key</p>
       <textarea id="rsa_private_key_field" style={{height:'150px'}}></textarea>
       
       <br></br>
       <br></br>
-      <button onClick={()=> encryptWithAESKey()}>Encrypt Text with AES Key</button>
+      <button class="button_green" onClick={()=> encryptWithAESKey()}>Encrypt Text with AES Key</button>
       <br></br>
       <br></br>
       <p>Text to Encrypt</p>      
@@ -41,7 +41,7 @@ const AESPage = () => {
       <textarea id="text_encrypted_with_pub_key"></textarea>
       <br></br>
       <br></br>
-      <button onClick={()=> decryptWithAESKey()}>Decrypt Text with AES Key</button>
+      <button class="button_red" onClick={()=> decryptWithAESKey()}>Decrypt Text with AES Key</button>
       <br></br>
       <br></br>
       <p>Text to Decrypt</p>      
