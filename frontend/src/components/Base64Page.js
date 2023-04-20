@@ -2,6 +2,14 @@
 import image from "../images/link_image.png"
 
 const Base64Page = () => {
+
+  {/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file */}
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    console.log("Selected file name:", file.name);
+    console.log("Selected file size:", file.size);
+  }
+
   return (
     <>
     <div className="pageContainer" style={{paddingLeft:"30px"}}>
@@ -12,6 +20,10 @@ const Base64Page = () => {
       <li><a href="https://base64.guru/converter/decode/file">Base 64 to File Converter (External Site)</a></li>
       <li><a href="https://base64.guru/converter/encode/file">File to Base 64 Converter (External Site)</a></li>
     </div>
+
+    <p style={{marginTop:"200px"}}>test to console.log size and file name</p>
+    {/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file */}
+    <input type="file" onChange={handleFileInputChange}></input>
     </div>
     </>
   );
