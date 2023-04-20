@@ -112,7 +112,7 @@ const decryptWithPrivateKey = () => {
 const RSAPage = () => {
   return (
     <Wrapper>
-    <div>
+    <div class="pageContainer">
       <h1>RSA Page</h1>
       <p>This is the RSA page.</p>
       <button onClick={()=> generateRSAKeys()}>Generate RSA Key Pair</button>
