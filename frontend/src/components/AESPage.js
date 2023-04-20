@@ -47,6 +47,8 @@ const encryptWithAESKey = () => {
 
   console.log(AES_Key_String)
 
+  
+
 
   // const message = "test"
 
@@ -62,6 +64,7 @@ const encryptWithAESKey = () => {
     }
 
 
+  // TODO - fix crash that happens if deleting a char of the AES key
 
   // Encrypt the message with the key
   const encrypted = CryptoJS.AES.encrypt(AES_text_to_encrypt, AES_Key_String);

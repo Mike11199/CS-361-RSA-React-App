@@ -41,7 +41,6 @@ body {
   /* padding-left: 30px; */
 }
 
-
 .navbar {
   background-color: black; 
   height: 50px;
@@ -63,3 +62,4 @@ body {
 .navbar a:hover {
   background-color: rgb(54, 54, 54);
 }
+
