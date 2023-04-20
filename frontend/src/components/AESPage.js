@@ -129,6 +129,7 @@ const AESPage = () => {
       {ToggleHelpAES_1 && (
         <div className='help'>
           <p> Todo</p>
+          <p> https://www.bjornjohansen.com/encrypt-file-using-ssh-key</p>   
         </div>
       )}
       <br></br>
@@ -142,6 +143,7 @@ const AESPage = () => {
       {ToggleHelpAES_2 && (
         <div className='help'>
           <p> Todo</p>
+          <p> https://www.bjornjohansen.com/encrypt-file-using-ssh-key</p>   
         </div>
       )}
       <br></br>
@@ -157,6 +159,7 @@ const AESPage = () => {
       {ToggleHelpAES_3 && (
         <div className='help'>
           <p> Todo</p>
+          <p> https://www.bjornjohansen.com/encrypt-file-using-ssh-key</p>   
         </div>
       )}
       <br></br>

@@ -140,9 +140,20 @@ const RSAPage = () => {
       <button className="button_gray" onClick={()=> setToggleHelpRSA_1(!ToggleHelpRSA_1)}>?</button>
       {ToggleHelpRSA_1 && (
         <div className='help'>
+          <span><strong>Generating an RSA Public and Private Key</strong></span>
           <p> CSH #1 - explain benefits of features</p>
           <p> This generates an RSA Private and Public Key Pair.  You need to save these to use them in the future.</p>
           <p> The public key can be given to multiple users, while the private key must be kept safe.</p>
+          <br/>
+          <span><strong>CLI Approach - Windows</strong></span>
+          <p> CSH #8 - encourage tinkerers  and CSH #7 provide diff approaches</p>
+          <div style={{paddingLeft:"30px"}}>
+             <li>Open the Command Prompt</li>
+             <li>Type the following command:</li>
+             <li>ssh-keygen -f C:\Users\%USERNAME%\.ssh\test</li>
+             <li>You should now have a public and private key in your .ssh folder named test and test.pub</li>
+          </div>
+          
         </div>
       )}
       <br></br>
@@ -157,6 +168,7 @@ const RSAPage = () => {
       {ToggleHelpRSA_2 && (
         <div className='help'>
           <p> Todo</p>
+          <p> https://www.bjornjohansen.com/encrypt-file-using-ssh-key</p>        
         </div>
       )}
       <br></br>
@@ -172,6 +184,7 @@ const RSAPage = () => {
       {ToggleHelpRSA_3 && (
         <div className='help'>
           <p> Todo</p>
+          <p> https://www.bjornjohansen.com/encrypt-file-using-ssh-key</p>          
         </div>
       )}
       <br></br>
