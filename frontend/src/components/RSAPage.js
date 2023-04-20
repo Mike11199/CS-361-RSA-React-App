@@ -8,6 +8,11 @@ const RSAPage = () => {
 
   const [privateKey, setPrivateKey] = useState('');
   const [publicKey, setPublicKey] = useState('');
+  const [ToggleHelpRSA_1, setToggleHelpRSA_1] = useState('');
+  const [ToggleHelpRSA_2, setToggleHelpRSA_2] = useState('');
+  const [ToggleHelpRSA_3, setToggleHelpRSA_3] = useState('');
+
+  
 
   const generateRSAKeys = () => {
   
@@ -124,12 +129,22 @@ const RSAPage = () => {
 
   }
 
+
+
   return (
     <Wrapper>
     <div className="pageContainer">
       <h1>RSA Page</h1>
       <p>This is the RSA page.</p>
       <button className="button_purple" onClick={()=> generateRSAKeys()}>Generate RSA Key Pair</button>
+      <button className="button_gray" onClick={()=> setToggleHelpRSA_1(!ToggleHelpRSA_1)}>?</button>
+      {ToggleHelpRSA_1 && (
+        <div className='help'>
+          <p> CSH #1 - explain benefits of features</p>
+          <p> This generates an RSA Private and Public Key Pair.  You need to save these to use them in the future.</p>
+          <p> The public key can be given to multiple users, while the private key must be kept safe.</p>
+        </div>
+      )}
       <br></br>
       <p>RSA Private Key</p>
       <textarea value={privateKey} id="rsa_private_key_field" style={{height:'450px'}} onChange={(e) => setPrivateKey(e.target.value)} ></textarea>
@@ -138,6 +153,12 @@ const RSAPage = () => {
       <br></br>
       <br></br>
       <button className="button_green" onClick={()=> encryptWithRSAPublicKey()}>Encrypt Text with RSA Public Key</button>
+      <button className="button_gray" onClick={()=> setToggleHelpRSA_2(!ToggleHelpRSA_2)}>?</button>
+      {ToggleHelpRSA_2 && (
+        <div className='help'>
+          <p> Todo</p>
+        </div>
+      )}
       <br></br>
       <br></br>
       <p>Text to Encrypt</p>      
@@ -147,6 +168,12 @@ const RSAPage = () => {
       <br></br>
       <br></br>
       <button className="button_red" onClick={()=> decryptWithPrivateKey()}>Decrypt Text with RSA Private Key</button>
+      <button className="button_gray" onClick={()=> setToggleHelpRSA_3(!ToggleHelpRSA_3)}>?</button>
+      {ToggleHelpRSA_3 && (
+        <div className='help'>
+          <p> Todo</p>
+        </div>
+      )}
       <br></br>
       <br></br>
       <p>Text to Decrypt</p>      

@@ -59,7 +59,31 @@ const Wrapper = styled.aside`
     .button_green:active {
       box-shadow: 0px 0px 5px #888;
     }
-
+    .button_gray {    
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      background-color: #928E8E;
+      color: #FFFFFF;
+      text-align: center;
+      transition: background-color .4s ease;
+      margin-left: 10px;
+    }
+    .button_gray:hover {
+      background-color: #ABA7A7;
+    }
+    .button_gray:active {      
+      box-shadow: 0px 0px 5px #888;
+    }
+    .help {
+      border: 1px solid black;
+      margin-top: 15px;
+      background-color: rgb(222,222,222);
+      padding: 10px;
+      width: 64%;      
+    }
 
 
 

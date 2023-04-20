@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 // import { JSEncrypt } from "jsencrypt";  // reference https://bartlomiejmika.com/post/2022/how-to-perform-rsa-encryption-in-javascript-and-golang/
 //https://www.npmjs.com/package/node-rsa   THIS DID NOT WORK, ONLY FOR NODE AND NOT FOR REACT
 import CryptoJS from 'crypto-js';
@@ -112,12 +112,25 @@ const decryptWithAESKey = () => {
 
 
 const AESPage = () => {
+
+  const [ToggleHelpAES_1, setToggleHelpAES_1] = useState('');
+  const [ToggleHelpAES_2, setToggleHelpAES_2] = useState('');
+  const [ToggleHelpAES_3, setToggleHelpAES_3] = useState('');
+
+
+
   return (
     <Wrapper>
     <div className="pageContainer">
       <h1>AES Page</h1>
       <p>This is the AES page.</p>
       <button className="button_purple" onClick={()=> generateAESKey()}>Generate New AES Key</button>
+      <button className="button_gray" onClick={()=> setToggleHelpAES_1(!ToggleHelpAES_1)}>?</button>
+      {ToggleHelpAES_1 && (
+        <div className='help'>
+          <p> Todo</p>
+        </div>
+      )}
       <br></br>
       <p>AES Symmetric Key</p>
       <textarea id="aes_key_field" style={{height:'150px'}}></textarea>
@@ -125,6 +138,12 @@ const AESPage = () => {
       <br></br>
       <br></br>
       <button className="button_green" onClick={()=> encryptWithAESKey()}>Encrypt Text with AES Key</button>
+      <button className="button_gray" onClick={()=> setToggleHelpAES_2(!ToggleHelpAES_2)}>?</button>
+      {ToggleHelpAES_2 && (
+        <div className='help'>
+          <p> Todo</p>
+        </div>
+      )}
       <br></br>
       <br></br>
       <p>Text to Encrypt</p>      
@@ -134,6 +153,12 @@ const AESPage = () => {
       <br></br>
       <br></br>
       <button className="button_red" onClick={()=> decryptWithAESKey()}>Decrypt Text with AES Key</button>
+      <button className="button_gray" onClick={()=> setToggleHelpAES_3(!ToggleHelpAES_3)}>?</button>
+      {ToggleHelpAES_3 && (
+        <div className='help'>
+          <p> Todo</p>
+        </div>
+      )}
       <br></br>
       <br></br>
       <p>Text to Decrypt</p>      
