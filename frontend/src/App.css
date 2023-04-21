@@ -60,6 +60,21 @@ body {
 }
 
 .navbar a:hover {
-  background-color: rgb(54, 54, 54);
+  background-color: rgb(74, 74, 74);
 }
 
+body {
+  background-color: #3b3d3f;
+  color: rgb(255, 255, 255);
+}
+
+textarea {
+  background-color: black;
+  color: rgb(0, 255, 21);
+  outline: none;
+  border: 2px solid rgb(0, 0, 0);
+}
+
+textarea:focus {
+  border-color: rgb(0, 133, 2);
+}

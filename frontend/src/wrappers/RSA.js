@@ -83,6 +83,7 @@ const Wrapper = styled.aside`
       background-color: rgb(222,222,222);
       padding: 10px;
       width: 64%;      
+      color: black;
     }
 
 
