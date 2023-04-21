@@ -143,6 +143,8 @@ const RSAPage = () => {
     <div className="pageContainer">
       <h1>RSA Page</h1>
       <p>This is the RSA page.</p>
+      <div style={{marginTop: '3%'}}>
+      </div>  
       <button className="button_purple" onClick={()=> generateRSAKeys()}>Generate RSA Key Pair</button>
       <button className="button_gray" onClick={()=> setToggleHelpRSA_1(!ToggleHelpRSA_1)}>?</button>
       {ToggleHelpRSA_1 && (
@@ -172,17 +174,17 @@ const RSAPage = () => {
       )}
       <br></br>
       <div className='twoColumn' style={{display:'flex', flexDirection:'row', width:'100%', alignItems: 'flex-start'}}>
-      <div style={{width:'30%', marginRight: '5%'}}>
-      <p>RSA Private Key</p>      
-      <textarea value={privateKey} id="rsa_private_key_field" style={{height:'450px', width:'100%'}} onChange={(e) => setPrivateKey(e.target.value)} ></textarea>
-      </div>            
-      <div style={{width:'30%'}}>
-      <p>RSA Public Key</p>
-      <textarea value={publicKey} id="rsa_public_key_field" style={{height:'450px', width:'100%'}} onChange={(e) => setPublicKey(e.target.value)} ></textarea>
-      </div>
+        <div style={{width:'30%', marginRight: '5%'}}>
+          <p>RSA Private Key</p>      
+          <textarea value={privateKey} id="rsa_private_key_field" style={{height:'450px', width:'100%'}} onChange={(e) => setPrivateKey(e.target.value)} ></textarea>
+        </div>            
+        <div style={{width:'30%'}}>
+          <p>RSA Public Key</p>
+          <textarea value={publicKey} id="rsa_public_key_field" style={{height:'450px', width:'100%'}} onChange={(e) => setPublicKey(e.target.value)} ></textarea>
+        </div>
       </div>      
-      <br></br>
-      <br></br>
+      <div style={{marginTop: '5%'}}>
+      </div>  
       <button className="button_green" onClick={()=> encryptWithRSAPublicKey()}>Encrypt Text with RSA Public Key</button>
       <button className="button_gray" onClick={()=> setToggleHelpRSA_2(!ToggleHelpRSA_2)}>?</button>
       {ToggleHelpRSA_2 && (
@@ -203,12 +205,18 @@ const RSAPage = () => {
       )}
       <br></br>
       <br></br>
-      <p>Text to Encrypt</p>      
-      <textarea id="text_to_encrypt_with_pub_key"></textarea>
-      <p>Text Encrypted with Public Key</p>
-      <textarea id="text_encrypted_with_pub_key"></textarea>
-      <br></br>
-      <br></br>
+      <div className='twoColumn' style={{display:'flex', flexDirection:'row', width:'100%', alignItems: 'flex-start'}}>
+        <div style={{width:'30%', marginRight: '5%'}}>
+        <p>Text to Encrypt</p>      
+          <textarea  id="text_to_encrypt_with_pub_key" style={{height:'450px', width:'100%'}} ></textarea>
+        </div>            
+        <div style={{width:'30%'}}>
+        <p>Text Encrypted with Public Key</p>
+          <textarea id="text_encrypted_with_pub_key" style={{height:'450px', width:'100%'}} ></textarea>
+        </div>
+      </div>  
+      <div style={{marginTop: '5%'}}>
+      </div>
       <button className="button_red" onClick={()=> decryptWithPrivateKey()}>Decrypt Text with RSA Private Key</button>
       <button className="button_gray" onClick={()=> setToggleHelpRSA_3(!ToggleHelpRSA_3)}>?</button>
       {ToggleHelpRSA_3 && (
@@ -225,12 +233,16 @@ const RSAPage = () => {
           <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>         
         </div>
       )}
-      <br></br>
-      <br></br>
-      <p>Text to Decrypt</p>      
-      <textarea id="text_to_decrypt_with_private_key"></textarea>      
-      <p>Text Decrypted with Private Key</p>
-      <textarea id="decrypted_text_using_private_key"></textarea>
+      <div className='twoColumn' style={{display:'flex', flexDirection:'row', width:'100%', alignItems: 'flex-start'}}>
+        <div style={{width:'30%', marginRight: '5%'}}>
+        <p>Text to Decrypt</p>       
+          <textarea  id="text_to_decrypt_with_private_key" style={{height:'450px', width:'100%'}} ></textarea>
+        </div>            
+        <div style={{width:'30%'}}>
+        <p>Text Decrypted with Private Key</p>
+          <textarea id="decrypted_text_using_private_key" style={{height:'450px', width:'100%'}} ></textarea>
+        </div>
+      </div>  
       <br></br>
       <br></br>
       <br></br>

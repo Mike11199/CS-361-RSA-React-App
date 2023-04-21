@@ -52,21 +52,36 @@ const TutorialPage = () => {
       <Wrapper>
         <div className="pageContainer" style={{paddingLeft:"30px"}}>
         <h1>Tutorial Page</h1>        
+        <div style={{marginTop: '2%'}}></div>
         <p>This pages uses a microservice to demonstrate how to securely receive an AES key.</p>
         <p>Generate an RSA Key Pair on the RSA Page and paste the public key below.</p>
         <p>Then click the button to send the public key to the microservice.</p>
         <p>You will receive the AES key below from the microservice, which you must decrypt using your RSA Private Key. The microservice uses your public key to encrypt an AES key it creates.</p>
         <p>After decrypting the AES key, you can use this AES key to decrypt the random message that was sent to you by the microservice. </p>
-        <button className="button_purple" onClick={()=> sendPubKeyToMicroservice()}>Send </button>        
+        <div style={{marginTop: '4%'}}></div>
+        <button className="button_purple" onClick={()=> sendPubKeyToMicroservice()}>Send </button>      
+        <div style={{marginTop: '2%'}}></div>  
         <p>RSA Public Key</p>
         <textarea value={PublicKey} id="rsa_public_key_field" style={{height:'150px'}} onChange={(e) => setPublicKey(e.target.value)} ></textarea>
        
-        <p>Encrypted AES Key - From Microservice - Use Private Key to Decrypt</p>
-        <textarea value={MicroServiceAESEncrypted} id="rsa_public_key_field" style={{height:'150px'}} onChange={(e) => setMicroServiceAESEncrypted(e.target.value)} ></textarea>
+        
+        
 
-        <p>Random Message Encrypted with AES Key - From Microservice - Use Decrypted AES Key Above to Decrypt</p>
-        <textarea value={MicroServiceAESMessage} id="rsa_public_key_field" style={{height:'150px'}} onChange={(e) => setMicroServiceAESMessage(e.target.value)} ></textarea>
+        
+        <div style={{marginTop: '1%'}}></div>
        
+        <div className='twoColumn' style={{display:'flex', flexDirection:'row', width:'100%', alignItems: 'flex-start'}}>
+        <div style={{width:'30%', marginRight: '5%'}}>
+        <p>From Microservice - Encrypted AES Key - Use Private Key to Decrypt</p>        
+        <textarea value={MicroServiceAESEncrypted} id="rsa_public_key_field" style={{height:'150px', width:'100%'}} onChange={(e) => setMicroServiceAESEncrypted(e.target.value)} ></textarea>
+        </div>            
+        <div style={{width:'30%'}}>
+        <p>From Microservice - Random Message - Use Decrypted AES Key to Decrypt</p>        
+        <textarea value={MicroServiceAESMessage} id="rsa_public_key_field" style={{height:'150px', width:'100%'}} onChange={(e) => setMicroServiceAESMessage(e.target.value)} ></textarea>
+        </div>
+        </div>  
+
+
         </div>
       </Wrapper>
   );

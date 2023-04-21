@@ -164,6 +164,7 @@ const AESPage = () => {
     <div className="pageContainer">
       <h1>AES Page</h1>
       <p>This is the AES page.</p>
+      <div style={{marginTop: '3%'}}></div>
       <button className="button_purple" onClick={()=> generateAESKey()}>Generate New AES Key</button>
       <button className="button_gray" onClick={()=> setToggleHelpAES_1(!ToggleHelpAES_1)}>?</button>
       {ToggleHelpAES_1 && (
@@ -190,9 +191,7 @@ const AESPage = () => {
       <br></br>
       <p>AES Symmetric Key</p>
       <textarea id="aes_key_field" style={{height:'150px'}}></textarea>
-      
-      <br></br>
-      <br></br>
+      <div style={{marginTop: '4%'}}></div>
       <button className="button_green" onClick={()=> encryptWithAESKey()}>Encrypt Text with AES Key</button>
       <button className="button_gray" onClick={()=> setToggleHelpAES_2(!ToggleHelpAES_2)}>?</button>
       {ToggleHelpAES_2 && (
@@ -217,15 +216,18 @@ const AESPage = () => {
           <li><strong>Reference:</strong> &nbsp; https://askubuntu.com/questions/1093591/how-should-i-change-encryption-according-to-warning-deprecated-key-derivat</li>       
           <li><strong>Reference:</strong> &nbsp; https://en.wikipedia.org/wiki/PBKDF2</li>       
         </div>
-      )}
-      <br></br>
-      <br></br>
-      <p>Text to Encrypt</p>      
-      <textarea id="text_to_encrypt_with_aes_key"></textarea>
-      <p>Text Encrypted with AES Key</p>
-      <textarea id="text_encrypted_with_aes_key"></textarea>
-      <br></br>
-      <br></br>
+      )}           
+      <div className='twoColumn' style={{display:'flex', flexDirection:'row', width:'100%', alignItems: 'flex-start'}}>
+        <div style={{width:'30%', marginRight: '5%'}}>
+        <p>Text to Encrypt</p>        
+          <textarea  id="text_to_encrypt_with_aes_key" style={{height:'450px', width:'100%'}} ></textarea>
+        </div>            
+        <div style={{width:'30%'}}>
+        <p>Text Encrypted with AES Key</p>
+          <textarea id="text_encrypted_with_aes_key" style={{height:'450px', width:'100%'}} ></textarea>
+        </div>
+      </div>  
+      <div style={{marginTop: '4%'}}></div>
       <button className="button_red" onClick={()=> decryptWithAESKey()}>Decrypt Text with AES Key</button>
       <button className="button_gray" onClick={()=> setToggleHelpAES_3(!ToggleHelpAES_3)}>?</button>
       {ToggleHelpAES_3 && (
@@ -246,10 +248,16 @@ const AESPage = () => {
       )}
       <br></br>
       <br></br>
-      <p>Text to Decrypt</p>      
-      <textarea id="text_to_decrypt_with_aes_key"></textarea>
-      <p>Text Decrypted with AES Key</p>
-      <textarea id="decrypted_text_using_aes_key"></textarea>
+      <div className='twoColumn' style={{display:'flex', flexDirection:'row', width:'100%', alignItems: 'flex-start'}}>
+        <div style={{width:'30%', marginRight: '5%'}}>
+        <p>Text to Decrypt</p>       
+          <textarea  id="text_to_decrypt_with_aes_key" style={{height:'450px', width:'100%'}} ></textarea>
+        </div>            
+        <div style={{width:'30%'}}>
+        <p>Text Decrypted with AES Key</p>
+          <textarea id="decrypted_text_using_aes_key" style={{height:'450px', width:'100%'}} ></textarea>
+        </div>
+      </div>  
       <br></br>
       <br></br>
       <br></br>
