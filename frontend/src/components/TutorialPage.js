@@ -29,12 +29,14 @@ const TutorialPage = () => {
 
     // MY MICROSERVICE FOR PARTNER 
     axios.post('https://cs-361-microservice-iwanekm.herokuapp.com/api', {
-      RSA_Public_Key: PublicKey,      
+      RSA_Public_Key: PublicKey, 
+      Response_Encrypted_AES_Key: "test - decrypt this with your RSA private key",   
+      Response_Encrypted_Message: "test - decrypt with AES key - what you decrypted with your private key",              
     })
     .then(function (response) {
-      console.log(response.data)
-      console.log(response.data.RSA_Public_Key)
-      setMicroServiceAESEncrypted(response.data.RSA_Public_Key)
+      console.log(`The public key sent and echoed back in the response was: ${response.data.RSA_Public_Key}`)
+      setMicroServiceAESEncrypted(response.data.Response_Encrypted_AES_Key)
+      setMicroServiceAESMessage(response.data.Response_Encrypted_Message)
     })
     .catch(function (error) {
       console.log(error)
@@ -58,6 +60,7 @@ const TutorialPage = () => {
         <p>Then click the button to send the public key to the microservice.</p>
         <p>You will receive the AES key below from the microservice, which you must decrypt using your RSA Private Key. The microservice uses your public key to encrypt an AES key it creates.</p>
         <p>After decrypting the AES key, you can use this AES key to decrypt the random message that was sent to you by the microservice. </p>
+        <p>To accomplish this, open the RSA and AES pages in separate tabs, and utilize the functions there with the output of this page. </p>
         <div style={{marginTop: '4%'}}></div>
         <button className="button_purple" onClick={()=> sendPubKeyToMicroservice()}>Send </button>      
         <div style={{marginTop: '2%'}}></div>  
