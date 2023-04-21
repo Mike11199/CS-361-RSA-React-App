@@ -3,6 +3,10 @@ import { JSEncrypt } from "jsencrypt";  // reference https://bartlomiejmika.com/
 //https://www.npmjs.com/package/node-rsa   THIS DID NOT WORK, ONLY FOR NODE AND NOT FOR REACT
 import Wrapper from '../wrappers/RSA.js'  // this is for styled components
 
+//reference https://www.npmjs.com/package/react-syntax-highlighter
+// reference https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/prism.html
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const RSAPage = () => {
 
@@ -35,6 +39,8 @@ const RSAPage = () => {
     let crypt = new JSEncrypt({default_key_size: 2048})    
     let publicKey_generated = crypt.getPublicKey()  //can't pass directly to set state or error
     let privateKey_generated  = crypt.getPrivateKey()
+
+    
 
     setPrivateKey(privateKey_generated)
     setPublicKey(publicKey_generated)
@@ -129,6 +135,7 @@ const RSAPage = () => {
 
   }
 
+  const CLI_Encrypt_With_Public_Key_String = "openssl aes-256-cbc -in secretfile.txt -out secretfile.txt.enc -pass file:secret.key"
 
 
   return (
@@ -149,9 +156,16 @@ const RSAPage = () => {
           <p> CSH #8 - encourage tinkerers  and CSH #7 provide diff approaches</p>
           <div style={{paddingLeft:"30px"}}>
              <li>Open the Command Prompt</li>
-             <li>Type the following command:</li>
-             <li>ssh-keygen -f C:\Users\%USERNAME%\.ssh\test</li>
-             <li>You should now have a public and private key in your .ssh folder named test and test.pub</li>
+             <li>Type the following command, replacing %USERNAME% with your actual user name:</li>
+             <li>
+              {/* Reference https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/prism.html for syntax highlighting */}
+                <div style={{width:"50%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
+                <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
+                ssh-keygen -f C:\Users\%USERNAME%\.ssh\test
+                </SyntaxHighlighter>
+                </div>
+              </li>             
+             <li>You should now have a private key in your .ssh folder named test and a public key named test.pub</li>
           </div>
           
         </div>
@@ -167,8 +181,18 @@ const RSAPage = () => {
       <button className="button_gray" onClick={()=> setToggleHelpRSA_2(!ToggleHelpRSA_2)}>?</button>
       {ToggleHelpRSA_2 && (
         <div className='help'>
-          <p> Todo</p>
-          <p> https://www.bjornjohansen.com/encrypt-file-using-ssh-key</p>        
+          
+          <span><strong>CLI Approach - Windows</strong></span>
+          <li></li>
+          <li>
+          <div style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
+            <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
+            openssl aes-256-cbc -in secretfile.txt -out secretfile.txt.enc -pass file:secret.key
+            </SyntaxHighlighter>
+            </div>
+          </li>
+          <li></li>
+          <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>       
         </div>
       )}
       <br></br>
@@ -183,14 +207,18 @@ const RSAPage = () => {
       <button className="button_gray" onClick={()=> setToggleHelpRSA_3(!ToggleHelpRSA_3)}>?</button>
       {ToggleHelpRSA_3 && (
         <div className='help'>
-          <p> Todo</p>
-          <p> https://www.bjornjohansen.com/encrypt-file-using-ssh-key</p>          
+          <li></li>
+          <li>
+
+          </li>
+          <li></li>
+          <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>         
         </div>
       )}
       <br></br>
       <br></br>
       <p>Text to Decrypt</p>      
-      <textarea id="text_to_decrypt_with_private_key"></textarea>
+      <textarea id="text_to_decrypt_with_private_key"></textarea>      
       <p>Text Decrypted with Private Key</p>
       <textarea id="decrypted_text_using_private_key"></textarea>
       <br></br>
