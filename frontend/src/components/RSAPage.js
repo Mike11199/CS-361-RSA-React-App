@@ -187,7 +187,7 @@ const RSAPage = () => {
           <li>
           <div style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
             <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
-            openssl aes-256-cbc -in secretfile.txt -out secretfile.txt.enc -pass file:secret.key
+              placeholder
             </SyntaxHighlighter>
             </div>
           </li>
@@ -209,7 +209,11 @@ const RSAPage = () => {
         <div className='help'>
           <li></li>
           <li>
-
+          <div style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
+            <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
+              placeholder
+            </SyntaxHighlighter>
+            </div>
           </li>
           <li></li>
           <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>         
