@@ -171,10 +171,16 @@ const RSAPage = () => {
         </div>
       )}
       <br></br>
-      <p>RSA Private Key</p>
-      <textarea value={privateKey} id="rsa_private_key_field" style={{height:'450px'}} onChange={(e) => setPrivateKey(e.target.value)} ></textarea>
+      <div className='twoColumn' style={{display:'flex', flexDirection:'row', width:'100%', alignItems: 'flex-start'}}>
+      <div style={{width:'30%', marginRight: '5%'}}>
+      <p>RSA Private Key</p>      
+      <textarea value={privateKey} id="rsa_private_key_field" style={{height:'450px', width:'100%'}} onChange={(e) => setPrivateKey(e.target.value)} ></textarea>
+      </div>            
+      <div style={{width:'30%'}}>
       <p>RSA Public Key</p>
-      <textarea value={publicKey} id="rsa_public_key_field" style={{height:'150px'}} onChange={(e) => setPublicKey(e.target.value)} ></textarea>
+      <textarea value={publicKey} id="rsa_public_key_field" style={{height:'450px', width:'100%'}} onChange={(e) => setPublicKey(e.target.value)} ></textarea>
+      </div>
+      </div>      
       <br></br>
       <br></br>
       <button className="button_green" onClick={()=> encryptWithRSAPublicKey()}>Encrypt Text with RSA Public Key</button>
