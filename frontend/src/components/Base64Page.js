@@ -1,6 +1,8 @@
 
 import image from "../images/link_image.png"
 import Wrapper from '../wrappers/Base64.js'  // this is for styled components
+import B6EncodeImage from "../images/base64Encode.png"
+import B6DecodeImage from "../images/base64Decode.png"
 
 const Base64Page = () => {
 
@@ -22,13 +24,18 @@ const Base64Page = () => {
     <div>   <li><a href="https://base64.guru/converter/decode/file">Base 64 to File Converter (External Site)</a></li>
       <li><a href="https://base64.guru/converter/encode/file">File to Base 64 Converter (External Site)</a></li>
    
-    </div>
-
-    <p style={{marginTop:"200px"}}>test to console.log size and file name</p>
+    </div>    
+    <p style={{marginTop:"50px"}}>test to console.log size and file name</p>
+    <p></p>
     {/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file */}
-    <input type="file" onChange={handleFileInputChange}></input>
+    <input style={{marginBottom:"100px"}} type="file" onChange={handleFileInputChange}></input>
     </div>
+    <h1>How to Encode/Decode Base64 to Binary and Back with Notepad++</h1>        
+    <img src={B6EncodeImage} alt="b64_encode" style={{height: "300px", marginBottom: '20px'}} />
+    <p></p>
+    <img src={B6DecodeImage} alt="b64_decode" style={{height: "190px", marginBottom: '20px'}} />
     </div>
+    <p style={{marginBottom:"100px"}}></p>
     </Wrapper>    
   );
 }
