@@ -196,7 +196,9 @@ const AESPage = () => {
           <li>Then convert it back to bits from Base 64 using Notepad++.</li>
           <li>This is likely due to padding or other issues in the JSEncrypt library used by this website not being compatible with openssl</li>
           <br></br>
-          <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>       
+          <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>   
+          <li><strong>Reference:</strong> &nbsp; https://www.openssl.org/docs/man1.1.1/man1/rand.html</li>    
+          
         </div>
       )}
       <br></br>
