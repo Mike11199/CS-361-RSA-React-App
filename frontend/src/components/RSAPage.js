@@ -13,11 +13,16 @@ const RSAPage = () => {
 
   const [privateKey, setPrivateKey] = useState('');
   const [publicKey, setPublicKey] = useState('');
-  const [ToggleHelpRSA_1, setToggleHelpRSA_1] = useState('');
-  const [ToggleHelpRSA_2, setToggleHelpRSA_2] = useState('');
-  const [ToggleHelpRSA_3, setToggleHelpRSA_3] = useState('');
+  const [ToggleHelpRSA_1, setToggleHelpRSA_1] = useState(true);
+  const [ToggleHelpRSA_2, setToggleHelpRSA_2] = useState(true);
+  const [ToggleHelpRSA_3, setToggleHelpRSA_3] = useState(true);
 
-  
+  const toggleTutorials = () => {
+    setToggleHelpRSA_1(!ToggleHelpRSA_1)
+    setToggleHelpRSA_2(!ToggleHelpRSA_2)
+    setToggleHelpRSA_3(!ToggleHelpRSA_1)
+
+  }
 
   const generateRSAKeys = () => {
   
@@ -142,6 +147,7 @@ const RSAPage = () => {
     <div className="pageContainer">
       <h1>RSA Page</h1>
       <p>This is the RSA page.</p>
+      <button className="button_orange" onClick={()=> toggleTutorials()}>Toggle Tutorials</button>
       <div style={{marginTop: '3%'}}>
       </div>  
       <button className="button_purple" onClick={()=> generateRSAKeys()}>Generate RSA Key Pair</button>

@@ -85,6 +85,23 @@ const Wrapper = styled.aside`
       width: 64%;      
       color: black;
     }
+    .button_orange {    
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      background-color: #CA7900;
+      color: #FFFFFF;
+      text-align: center;
+      transition: background-color .4s ease;
+    }
+    .button_orange:hover {
+      background-color: #FF9A00;
+    }
+    .button_orange:active {
+      box-shadow: 0px 0px 5px #888;
+    }
 
 
 

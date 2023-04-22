@@ -153,17 +153,23 @@ const decryptWithAESKey = () => {
 
 const AESPage = () => {
 
-  const [ToggleHelpAES_1, setToggleHelpAES_1] = useState('');
-  const [ToggleHelpAES_2, setToggleHelpAES_2] = useState('');
-  const [ToggleHelpAES_3, setToggleHelpAES_3] = useState('');
+  const [ToggleHelpAES_1, setToggleHelpAES_1] = useState(true);
+  const [ToggleHelpAES_2, setToggleHelpAES_2] = useState(true);
+  const [ToggleHelpAES_3, setToggleHelpAES_3] = useState(true);
 
+  const toggleTutorials = () => {
+    setToggleHelpAES_1(!ToggleHelpAES_1)
+    setToggleHelpAES_2(!ToggleHelpAES_2)
+    setToggleHelpAES_3(!ToggleHelpAES_3)
 
+  }
 
   return (
     <Wrapper>
     <div className="pageContainer">
       <h1>AES Page</h1>
       <p>This is the AES page.</p>
+      <button className="button_orange" onClick={()=> toggleTutorials()}>Toggle Tutorials</button>
       <div style={{marginTop: '3%'}}></div>
       <button className="button_purple" onClick={()=> generateAESKey()}>Generate New AES Key</button>
       <button className="button_gray" onClick={()=> setToggleHelpAES_1(!ToggleHelpAES_1)}>?</button>
