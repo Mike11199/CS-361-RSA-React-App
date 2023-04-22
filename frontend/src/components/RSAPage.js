@@ -37,7 +37,7 @@ const RSAPage = () => {
     }
 
     // reference https://bartlomiejmika.com/post/2022/how-to-perform-rsa-encryption-in-javascript-and-golang/
-    let crypt = new JSEncrypt({default_key_size: 2048})    
+    let crypt = new JSEncrypt({default_key_size: 4096})    
     let publicKey_generated = crypt.getPublicKey()  //can't pass directly to set state or error
     let privateKey_generated  = crypt.getPrivateKey()
 
