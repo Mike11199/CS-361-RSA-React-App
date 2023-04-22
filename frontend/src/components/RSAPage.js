@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { JSEncrypt } from "jsencrypt";  // reference https://bartlomiejmika.com/post/2022/how-to-perform-rsa-encryption-in-javascript-and-golang/
 //https://www.npmjs.com/package/node-rsa   THIS DID NOT WORK, ONLY FOR NODE AND NOT FOR REACT
 import Wrapper from '../wrappers/RSA.js'  // this is for styled components
+import image from "../images/key screenshot.png"
 
 //reference https://www.npmjs.com/package/react-syntax-highlighter
 // reference https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/prism.html
@@ -150,24 +151,38 @@ const RSAPage = () => {
       {ToggleHelpRSA_1 && (
         <div className='help'>
           <span><strong>Generating an RSA Public and Private Key</strong></span>
-          <p> CSH #1 - explain benefits of features</p>
-          <p> This generates an RSA Private and Public Key Pair.  You need to save these to use them in the future.</p>
-          <p> The public key can be given to multiple users, while the private key must be kept safe.</p>
-          <br/>
-          <span><strong>CLI Approach - Windows</strong></span>
-          <p> CSH #8 - encourage tinkerers  and CSH #7 provide diff approaches</p>
+          <div style={{paddingLeft:"30px"}}>          
+          <li> This generates an RSA Private and Public Key Pair.  You need to save these to use them in the future.</li>
+          <li> The public key can be given to multiple users, while the private key must be kept safe.</li>
+          </div>
+          <br></br>
+          <br></br>
+          <span><strong>CLI Approach Key Generation - Windows</strong></span>
           <div style={{paddingLeft:"30px"}}>
              <li>Open the Command Prompt</li>
-             <li>Type the following command, replacing %USERNAME% with your actual user name:</li>
+             <li>Make sure you are in the correct working directory or cd to it, where you want the keys to be generated to.</li>
+             <li>Type the following command to generate a private key in your current directory.</li>
              <li>
               {/* Reference https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/prism.html for syntax highlighting */}
                 <div style={{width:"50%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
                 <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
-                ssh-keygen -f C:\Users\%USERNAME%\.ssh\test
+                openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:4096
                 </SyntaxHighlighter>
-                </div>
+                </div>                
               </li>             
-             <li>You should now have a private key in your .ssh folder named test and a public key named test.pub</li>
+              <li>Type the following command to extract the public key from the private key in your current directory.</li>              
+              <li>
+              {/* Reference https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/prism.html for syntax highlighting */}
+                <div style={{width:"50%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
+                <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
+                openssl rsa -in private_key.pem -pubout -out public_key.pem
+                </SyntaxHighlighter>
+                </div>                
+              </li>   
+             <li>You should now have a private key in your .ssh folder named private_key.pem and a public key named test.pub</li>
+             <li><img src={image} alt="link_image" style={{height: "50px"}} /></li>
+             <li>ssh-keygen will not work as the key/pair won't be in a .pem format.</li>
+             <li><strong>Reference:</strong>&nbsp; https://www.openssl.org/docs/man3.0/man1/openssl-genpkey.html</li>
           </div>
           
         </div>
@@ -190,17 +205,33 @@ const RSAPage = () => {
       {ToggleHelpRSA_2 && (
         <div className='help'>
           
-          <span><strong>CLI Approach - Windows</strong></span>
-          <li></li>
+          <span><strong>General Idea</strong></span>
+          
+          <br></br>
+          <li>RSA is usually NOT meant to send long encrypted messages. Encryption will fail for a long message size.</li>
+          <li>Usually an AES key is what is encrypted by the RSA public key.</li>
+          <li>This can then be decrypted ONLY by the private key holder.</li>
+          <li>The public key can be given to many different individuals however.</li>
+          <li><strong>Reference:</strong>&nbsp; https://en.wikipedia.org/wiki/Hybrid_cryptosystem#Example</li>
+          <br></br>
+          <br></br>
+          <span><strong>CLI Approach Encryption - Windows</strong></span>
+          
+          <br></br>
+          <li>Ensure you have a file called <strong>secret.key</strong> or rename that in the command. </li>
+          <li>Ensure you are in the correct working directory where your public key is or cd to it.</li>
+          <li>To encrypt using a CLI such as Windows CMD, use the following command:</li>          
           <li>
-          <div style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
+          <div style={{width:"90%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
             <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
-              placeholder
+            {`openssl rsautl -encrypt -oaep -pubin -inkey public_key.pem -in secret.key -out secret.key.enc `}
             </SyntaxHighlighter>
             </div>
-          </li>
-          <li></li>
-          <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>       
+          </li>          
+          <li>The file <strong>secret.key</strong> is then converted to <strong>secret.key.enc</strong> where .enc is a file extension that means encrypted.</li>
+          <li>Now only the private key holder can decrypt the AES key.</li>
+          <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li> 
+          
         </div>
       )}
       <br></br>
@@ -221,16 +252,33 @@ const RSAPage = () => {
       <button className="button_gray" onClick={()=> setToggleHelpRSA_3(!ToggleHelpRSA_3)}>?</button>
       {ToggleHelpRSA_3 && (
         <div className='help'>
-          <li></li>
+          <span><strong>General Idea</strong></span>
+          <br></br>
+
+          <li>Only the <strong>private key</strong> holder can decrypt a message encoded with a public key.</li>
+          <li>Usually you will decrypt an AES key sent to you, encrypted by your public key.</li>
+          <li>You can then use the AES key to decrypt messages sent to you, or encrypt messages with the AES key yourself.</li>
+          <li>Using RSA in this way, you can securely exchange an AES key, and only use AES going forward.</li>          
+          <br></br>
+          <span><strong>CLI Approach Decryption - Windows</strong></span>
+          <br></br>
+          <li>Ensure you have a file called secret.key.enc or rename that in the command. This is the file to decrypt.</li>
+          <li>Ensure you are in the correct working directory where your private/public key is or cd to it.</li>
+          <li>To encrypt using a CLI such as Windows CMD, use the following command:</li>
           <li>
-          <div style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
+          <div style={{width:"90%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
             <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
-              placeholder
+            {`openssl rsautl -decrypt -oaep -inkey private_key.pem -in secret.key.enc -out decrypted_secret.key`}
             </SyntaxHighlighter>
             </div>
           </li>
-          <li></li>
-          <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>         
+          <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>
+          <br></br>
+          <span><strong>Limitations</strong></span>
+          <br></br>        
+          <li>You cannot send an AES Key to someone unless they themselves generate an RSA Key pair.</li>
+          <li>Then you will have to receive their public key, and use that to encrypt your AES key.</li>
+          
         </div>
       )}
       <div className='twoColumn' style={{display:'flex', flexDirection:'row', width:'100%', alignItems: 'flex-start'}}>
