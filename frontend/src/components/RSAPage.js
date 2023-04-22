@@ -136,8 +136,6 @@ const RSAPage = () => {
 
   }
 
-  const CLI_Encrypt_With_Public_Key_String = "openssl aes-256-cbc -in secretfile.txt -out secretfile.txt.enc -pass file:secret.key"
-
 
   return (
     <Wrapper>
@@ -152,7 +150,7 @@ const RSAPage = () => {
         <div className='help'>
           <span><strong>Generating an RSA Public and Private Key</strong></span>
           <div style={{paddingLeft:"30px"}}>          
-          <li> This generates an RSA Private and Public Key Pair.  You need to save these to use them in the future.</li>
+          <li> This generates a 4096 bit RSA Private Key and Public Key Pair.  You need to save these to use them in the future.</li>
           <li> The public key can be given to multiple users, while the private key must be kept safe.</li>
           </div>
           <br></br>
@@ -166,7 +164,7 @@ const RSAPage = () => {
               {/* Reference https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/prism.html for syntax highlighting */}
                 <div style={{width:"50%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
                 <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
-                openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:4096
+                openssl genrsa -out private_key.pem 4096
                 </SyntaxHighlighter>
                 </div>                
               </li>             
@@ -175,14 +173,16 @@ const RSAPage = () => {
               {/* Reference https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/prism.html for syntax highlighting */}
                 <div style={{width:"50%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
                 <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
-                openssl rsa -in private_key.pem -pubout -out public_key.pem
+                openssl rsa -pubout -in private_key.pem -out public_key.pem
                 </SyntaxHighlighter>
                 </div>                
               </li>   
              <li>You should now have a private key in your .ssh folder named private_key.pem and a public key named test.pub</li>
              <li><img src={image} alt="link_image" style={{height: "50px"}} /></li>
              <li>ssh-keygen will not work as the key/pair won't be in a .pem format.</li>
+             <br></br>
              <li><strong>Reference:</strong>&nbsp; https://www.openssl.org/docs/man3.0/man1/openssl-genpkey.html</li>
+             <li><strong>Reference JS Library Documentation:</strong>&nbsp; https://travistidwell.com/jsencrypt/#</li>
           </div>
           
         </div>
@@ -191,11 +191,11 @@ const RSAPage = () => {
       <div className='twoColumn' style={{display:'flex', flexDirection:'row', width:'100%', alignItems: 'flex-start'}}>
         <div style={{width:'30%', marginRight: '5%'}}>
           <p>RSA Private Key</p>      
-          <textarea value={privateKey} id="rsa_private_key_field" style={{height:'450px', width:'100%'}} onChange={(e) => setPrivateKey(e.target.value)} ></textarea>
+          <textarea value={privateKey} id="rsa_private_key_field" style={{height:'800px', width:'100%'}} onChange={(e) => setPrivateKey(e.target.value)} ></textarea>
         </div>            
         <div style={{width:'30%'}}>
           <p>RSA Public Key</p>
-          <textarea value={publicKey} id="rsa_public_key_field" style={{height:'450px', width:'100%'}} onChange={(e) => setPublicKey(e.target.value)} ></textarea>
+          <textarea value={publicKey} id="rsa_public_key_field" style={{height:'800px', width:'100%'}} onChange={(e) => setPublicKey(e.target.value)} ></textarea>
         </div>
       </div>      
       <div style={{marginTop: '5%'}}>
@@ -224,12 +224,22 @@ const RSAPage = () => {
           <li>
           <div style={{width:"90%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
             <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
-            {`openssl rsautl -encrypt -oaep -pubin -inkey public_key.pem -in secret.key -out secret.key.enc `}
+            {`openssl rsautl -encrypt -pubin -inkey public_key.pem -in secret.key -out secret.key.enc `}
             </SyntaxHighlighter>
             </div>
           </li>          
           <li>The file <strong>secret.key</strong> is then converted to <strong>secret.key.enc</strong> where .enc is a file extension that means encrypted.</li>
           <li>Now only the private key holder can decrypt the AES key.</li>
+          <br></br>
+          <li><strong>Warning:</strong> You have to convert your encrypted binary text from the CLI command above to Base64 to match what this website is doing by using Notepad++:</li>
+          <li>In Notepad++ open the file from the above CMD command, go to the ribbon, and select Plugins, Mime Tools, Base64 Encode while selecting all the encrypted text then save.</li>
+          <li>Only when the encrypted text is in Base64 can you use your CLI output on this website in the next step.</li>
+          <br></br>
+          <li><strong>Warning:</strong> To use this encrypted Base64 text from the website in later steps in your CLI, you have to convert it to binary data.</li>
+          <li>Copy the output of this website into a file called secret.key.enc to match later commands.</li>
+          <li>In Notepad++ go to the ribbon, and select Plugins, Mime Tools, Base64 Decode while selecting all the encrypted text then save.</li>
+          <li>Now the encrypted text is in binary and can be used in openssl in later steps.</li>
+          <br></br>          
           <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li> 
           
         </div>
@@ -262,16 +272,27 @@ const RSAPage = () => {
           <br></br>
           <span><strong>CLI Approach Decryption - Windows</strong></span>
           <br></br>
-          <li>Ensure you have a file called secret.key.enc or rename that in the command. This is the file to decrypt.</li>
+          <li>Ensure you have a file called <strong>secret.key.enc</strong> or replace that with the actual file below in the command text. This is the file to decrypt.</li>
           <li>Ensure you are in the correct working directory where your private/public key is or cd to it.</li>
-          <li>To encrypt using a CLI such as Windows CMD, use the following command:</li>
+          <li>To decrypt using a CLI such as Windows CMD, use the following command:</li>
           <li>
           <div style={{width:"90%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
             <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
-            {`openssl rsautl -decrypt -oaep -inkey private_key.pem -in secret.key.enc -out decrypted_secret.key`}
+            {`openssl rsautl -decrypt -inkey private_key.pem -in secret.key.enc -out decrypted_secret.key`}
             </SyntaxHighlighter>
             </div>
           </li>
+          <br></br>
+          <li><strong>Warning:</strong> If trying to decode Base64 from this website with the CLI, you have to do the following:</li>
+          <li>Copy encrypted base64 text from this website into a file, called secret.key.enc if you want to match the CLI command.</li>
+          <li>In Notepad++ go to the ribbon, and select Plugins, Mime Tools, Base64 Decode while selecting all text then save.</li>
+          <li>openssl expects binary not base64 or else will give mod length too large error!</li>
+          <li>Then the decrypt command should work in CLI and output a new file with the decrypted text.</li>
+          <br></br>
+          <li><strong>Warning:</strong> If trying to decode text encrypted from the CLI on this website, you have to do the following:</li>     
+          <li>Open the file created by the CLI encryption process called secret.key.enc or change the command above to reflect the actual file name. Open the file in Notepad++.</li>     
+          <li>In Notepad++ go to the ribbon, and select Plugins, Mime Tools, Base64 Encode while selecting all binary text then save.</li>          
+          <li>Now the binary data is in Base 64 and the Notepad++ file contents can be copied and pasted into this website to decode!</li>          
           <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>
           <br></br>
           <span><strong>Limitations</strong></span>
