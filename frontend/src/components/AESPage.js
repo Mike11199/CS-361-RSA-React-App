@@ -214,7 +214,7 @@ const AESPage = () => {
           <li>
           <div style={{width:"70%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
             <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
-            openssl aes-256-cbc -in secretfile.txt -out secretfile.txt.enc -pass file:secret.key -pbkdf2 -iter 100000
+            openssl aes-256-cbc -in secretfile.txt -out secretfile.txt.enc -pass file:secret.key -pbkdf2 -iter 1000000
             </SyntaxHighlighter>
             </div>
           </li>         
