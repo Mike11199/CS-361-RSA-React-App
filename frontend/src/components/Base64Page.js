@@ -18,8 +18,10 @@ const Base64Page = () => {
     <div className="pageContainer">
     <h1>Base64 - External File Converter Page</h1>        
     <div className="pageContainer" style={{paddingLeft:"30px"}}>
-    <p>You can use the below external links to encrypt/decrypt a file!</p>
-    <p>Try to encode/decode this image!  This image is small so that this can work.</p>
+    <p>You can use the below external links to encode/decode a file into Base 64!</p>
+    <p>Once a file is in Base 64, it is possible to encrypt it using this website with AES.</p>
+    <p>Try to encrypt/decrypt this image after saving it to your desktop.  This image is relatively small so that this process can work quickly.</p>
+    <p>With AES, you can encrypt large files however.  RSA can only decrypt/encrypt small files (only for sending an AES key).</p>
     <img src={image} alt="link_image" style={{height: "100px", marginBottom: '20px'}} />
     <div>   <li><a href="https://base64.guru/converter/decode/file">Base 64 to File Converter (External Site)</a></li>
       <li><a href="https://base64.guru/converter/encode/file">File to Base 64 Converter (External Site)</a></li>
