@@ -240,7 +240,7 @@ const AESPage = () => {
             openssl aes-256-cbc -d -in secretfile.txt.enc -out secretfile.txt -pass file:secret.key -pbkdf2 -iter 1000000
             </SyntaxHighlighter>
             </div>
-            <li>The <strong>-pbkdf2 -iter 1000000</strong>has to exactly match what was used to encrypt the file.</li>
+            <li>The <strong>-pbkdf2 -iter 1000000 </strong>has to exactly match what was used to encrypt the file.</li>
             <li>You can leave out <strong>-pbkdf2 -iter 1000000</strong> for encrypt/decrypt but you will get a warning from Windows CMD that this is insecure.</li>
           </li>     
           <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>       
