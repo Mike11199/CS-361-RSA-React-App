@@ -250,7 +250,7 @@ const AESPage = () => {
           <li>
           <div style={{width:"70%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
             <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
-            openssl aes-256-cbc -d -in secretfile.txt.enc -out secretfile.txt -pass file:secret.key -pbkdf2 -iter 1000000
+            openssl aes-256-cbc -d -in secretfile.txt.enc -out secretfile_decrypted.txt -pass file:secret.key -pbkdf2 -iter 1000000
             </SyntaxHighlighter>
             </div>
             <li>The <strong>-pbkdf2 -iter 1000000 </strong>has to exactly match what was used to encrypt the file.</li>
