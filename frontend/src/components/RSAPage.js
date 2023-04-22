@@ -158,6 +158,7 @@ const RSAPage = () => {
           <div style={{paddingLeft:"30px"}}>          
           <li> This generates a 4096 bit RSA Private Key and Public Key Pair.  You need to save these to use them in the future.</li>
           <li> The public key can be given to multiple users, while the private key must be kept safe.</li>
+          <li> <strong style={{color: "red"}}>Warning! </strong>This might take up to 10 seconds due to the large key pair size!</li>
           </div>
           <br></br>
           <br></br>
