@@ -176,8 +176,7 @@ const AESPage = () => {
       {ToggleHelpAES_1 && (
         <div className='help'>
           <span><strong>CLI Approach - Windows</strong></span>
-          <li>If you want to generate a key manually in Windows CMD, use this command:</li>
-          <li><strong>WARNING: </strong> &nbsp; This command-line approach won't be compatible with the web JS version.</li>
+          <li>If you want to generate a key manually in Windows CMD, use this command:</li>          
           <li>
           <div style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
             <SyntaxHighlighter language="javascript" style={vscDarkPlus}>
@@ -188,9 +187,15 @@ const AESPage = () => {
           <li>This will generate a random AES key of 32 bytes.  32 x 8 =256 bit key.</li>
           <li>The output file will be named <strong>secret.key</strong></li>
           <li>However, this will be in bits so cannot be displayed in Notepad.  You will have to use Notepad++.</li>
-          <li>In Notepad++, select the text, then from the top menu or ribbon, select plugins, MIME tools, Base64 Encode with Padding</li>
+          <li>In Notepad++, select the text, then from the top menu or ribbon, select plugins, MIME tools, Base64 Encode and save.</li>
           <li>This converts the key Base64 which is human readable and can be sent via email/text/etc. </li>
           <li>To go back to bits, use plugins, MIME tools, Base64 Decode.  Keep the key in bits if you want to use it in the CLI later on.</li>
+          <br></br>
+          <li><strong>WARNING: </strong> &nbsp; This command-line approach won't be compatible with the web JS version.</li>
+          <li>You can still use AES on your local machines, but then you will have to use this website's RSA page to transfer the Base 64 version of the key! </li>
+          <li>Then convert it back to bits from Base 64 using Notepad++.</li>
+          <li>This is likely due to padding or other issues in the JSEncrypt library used by this website not being compatible with openssl</li>
+          <br></br>
           <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>       
         </div>
       )}
@@ -249,6 +254,7 @@ const AESPage = () => {
             <li>The <strong>-pbkdf2 -iter 1000000 </strong>has to exactly match what was used to encrypt the file.</li>
             <li>You can leave out <strong>-pbkdf2 -iter 1000000</strong> for encrypt/decrypt but you will get a warning from Windows CMD that this is insecure.</li>
           </li>     
+          <br></br>
           <li><strong>Reference:</strong> &nbsp; https://www.bjornjohansen.com/encrypt-file-using-ssh-key</li>       
         </div>
       )}
