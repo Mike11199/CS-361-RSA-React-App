@@ -3,6 +3,8 @@ import { JSEncrypt } from "jsencrypt";  // reference https://bartlomiejmika.com/
 //https://www.npmjs.com/package/node-rsa   THIS DID NOT WORK, ONLY FOR NODE AND NOT FOR REACT
 import Wrapper from '../wrappers/RSA.js'  // this is for styled components
 import image from "../images/key screenshot.png"
+import PulseLoader from "react-spinners/PulseLoader";  //REFERENCE : https://www.npmjs.com/package/react-spinners
+
 
 //reference https://www.npmjs.com/package/react-syntax-highlighter
 // reference https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/prism.html
@@ -16,6 +18,7 @@ const RSAPage = () => {
   const [ToggleHelpRSA_1, setToggleHelpRSA_1] = useState(true);
   const [ToggleHelpRSA_2, setToggleHelpRSA_2] = useState(true);
   const [ToggleHelpRSA_3, setToggleHelpRSA_3] = useState(true);
+  const [LoadingForSpinner, setLoadingForSpinner] = useState(false)
 
   const toggleTutorials = () => {
     setToggleHelpRSA_1(!ToggleHelpRSA_1)
@@ -41,20 +44,32 @@ const RSAPage = () => {
       }
     }
 
-    // reference https://bartlomiejmika.com/post/2022/how-to-perform-rsa-encryption-in-javascript-and-golang/
-    let crypt = new JSEncrypt({default_key_size: 4096})    
-    let publicKey_generated = crypt.getPublicKey()  //can't pass directly to set state or error
-    let privateKey_generated  = crypt.getPrivateKey()
+    console.log(LoadingForSpinner)
+    setLoadingForSpinner(true);
+    console.log(LoadingForSpinner)
 
-    
 
-    setPrivateKey(privateKey_generated)
-    setPublicKey(publicKey_generated)
+    // setTimeout is used to allow us to wait for the state - loading spinner - to update and rerender the component
+    // or else the code will continue on and not wait
+    // even though the wait is 0 seconds, the callback of setTimeout is added to the event loop 
+    setTimeout(() => {
+      // reference https://bartlomiejmika.com/post/2022/how-to-perform-rsa-encryption-in-javascript-and-golang/
+      let crypt = new JSEncrypt({ default_key_size: 4096 });
+      let publicKey_generated = crypt.getPublicKey();  //can't pass directly to set state or error
+      let privateKey_generated = crypt.getPrivateKey();
+  
+      setPrivateKey(privateKey_generated);
+      setPublicKey(publicKey_generated);
 
-    console.log('generated from crypt')
-    console.log(crypt)
-    console.log(privateKey_generated)
-    console.log(publicKey_generated)
+      console.log('generated from crypt')
+      console.log(crypt)
+      console.log(privateKey_generated)
+      console.log(publicKey_generated)
+      
+  
+      setLoadingForSpinner(false);
+    }, 0);
+
   }
 
 
@@ -147,11 +162,24 @@ const RSAPage = () => {
     <div className="pageContainer">
       <h1>RSA Page</h1>
       <p>This is the RSA page.</p>
-      <button className="button_orange" onClick={()=> toggleTutorials()}>Toggle Tutorials</button>
+      <button className="button_orange" onClick={()=> toggleTutorials()}>  
+        Toggle Tutorials
+     </button>
       <div style={{marginTop: '3%'}}>
       </div>  
-      <button className="button_purple" onClick={()=> generateRSAKeys()}>Generate RSA Key Pair</button>
-      <button className="button_gray" onClick={()=> setToggleHelpRSA_1(!ToggleHelpRSA_1)}>?</button>
+      <button className="button_purple" onClick={()=> generateRSAKeys()} style={{width:"250px"}}>
+      {LoadingForSpinner ? "" : "Generate RSA Key Pair"}
+        {/* REFERENCE https://www.davidhu.io/react-spinners/storybook/?path=/docs/pulseloader--main */} 
+        <PulseLoader  
+        loading={LoadingForSpinner}
+        color="#FFFFFF"
+        size={10}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      /> 
+      </button>
+  
+      <button className="button_gray" onClick={()=> setToggleHelpRSA_1(!ToggleHelpRSA_1)} disabled={LoadingForSpinner}>?</button>
       {ToggleHelpRSA_1 && (
         <div className='help'>
           <span><strong>Generating an RSA Public and Private Key</strong></span>
