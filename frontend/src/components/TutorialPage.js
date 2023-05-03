@@ -27,7 +27,7 @@ const TutorialPage = () => {
     // })
 
 
-    // MY MICROSERVICE FOR PARTNER 
+    // MY MICROSERVICE FOR PARTNER - v1
     axios.post('https://cs-361-microservice-iwanekm.herokuapp.com/api', {
       RSA_Public_Key: PublicKey, 
       Response_Encrypted_AES_Key: "test - decrypt this with your RSA private key",   
@@ -42,6 +42,19 @@ const TutorialPage = () => {
       console.log(error)
       setMicroServiceAESEncrypted("Partner's Microservice is down!")
     })
+
+
+
+        // // MY MICROSERVICE FOR PARTNER - v2
+        // axios.post('https://cs-361-microservice-iwanekm.herokuapp.com/api/zip-code-from-city', {
+        //   city: "San Francisco", 
+        // })
+        // .then(function (response) {          
+        //   console.log(response.data)
+        // })
+        // .catch(function (error) {
+        //   console.log(error)
+        // })
 
 
   }
