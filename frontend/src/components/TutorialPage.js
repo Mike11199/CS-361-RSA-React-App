@@ -14,34 +14,36 @@ const TutorialPage = () => {
       return;
     }
 
-    // PARTNER MICROSERVICE
-    // axios.post('https://cs361-microservice.herokuapp.com/test', {
-    //   RSA_Public_Key: 'my_pub_key_test',      
-    // })
-    // .then(function (response) {
-    //   console.log(response.data)
-    //   setMicroServiceAESEncrypted(response.data)
-    // })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
-
-
-    // MY MICROSERVICE FOR PARTNER - v1
-    axios.post('https://cs-361-microservice-iwanekm.herokuapp.com/api', {
-      RSA_Public_Key: PublicKey, 
-      Response_Encrypted_AES_Key: "test - decrypt this with your RSA private key",   
-      Response_Encrypted_Message: "test - decrypt with AES key - what you decrypted with your private key",              
+    //PARTNER MICROSERVICE
+    axios.post('https://cs361-microservice.herokuapp.com/', {
+      publicKey: PublicKey,      
     })
     .then(function (response) {
-      console.log(`The public key sent and echoed back in the response was: ${response.data.RSA_Public_Key}`)
-      setMicroServiceAESEncrypted(response.data.Response_Encrypted_AES_Key)
-      setMicroServiceAESMessage(response.data.Response_Encrypted_Message)
+      console.log(response.data)
+      setMicroServiceAESEncrypted(response.data.encryptedKey)
+      setMicroServiceAESMessage(response.data.encryptedMessage)
     })
     .catch(function (error) {
       console.log(error)
       setMicroServiceAESEncrypted("Partner's Microservice is down!")
     })
+
+
+    // // MY MICROSERVICE FOR PARTNER - v1
+    // axios.post('https://cs-361-microservice-iwanekm.herokuapp.com/api', {
+    //   RSA_Public_Key: PublicKey, 
+    //   Response_Encrypted_AES_Key: "test - decrypt this with your RSA private key",   
+    //   Response_Encrypted_Message: "test - decrypt with AES key - what you decrypted with your private key",              
+    // })
+    // .then(function (response) {
+    //   console.log(`The public key sent and echoed back in the response was: ${response.data.RSA_Public_Key}`)
+    //   setMicroServiceAESEncrypted(response.data.Response_Encrypted_AES_Key)
+    //   setMicroServiceAESMessage(response.data.Response_Encrypted_Message)
+    // })
+    // .catch(function (error) {
+    //   console.log(error)
+    //   setMicroServiceAESEncrypted("Partner's Microservice is down!")
+    // })
 
 
 
