@@ -21,7 +21,6 @@ function createWindow() {
     //   symbolColor: '#74b1be',
     //   height: 32
     // }
-
   });
 
   // and load the index.html of the app.
