@@ -3,7 +3,7 @@
 - Download the .exe from the link below - also available under releases:
 - https://github.com/Mike11199/CS-361-RSA-React-App/releases/tag/v0.1.0-electron
 - Unfortunately this is 150 MB due to having to package chromium into the entire release
-
+- Use 'npm run build' to build the EXE file in the frontend folder of the 'electron' branch.
 
 
 
