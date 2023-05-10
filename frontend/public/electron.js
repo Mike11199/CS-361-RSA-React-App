@@ -1,30 +1,54 @@
 const path = require('path');
 
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, screen } = require('electron');
 const isDev = require('electron-is-dev');
 
 function createWindow() {
   // Create the browser window.
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize
+
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: Math.round(width * 0.9),
+    height: Math.round(height * 0.9),
     webPreferences: {
       nodeIntegration: true,
     },
+    // titleBarStyle: 'hidden',
+
+    // // titleBarStyle: 'hidden',
+    // titleBarOverlay: {
+    //   color: '#8b0000',
+    //   symbolColor: '#74b1be',
+    //   height: 32
+    // }
+
   });
 
   // and load the index.html of the app.
   // win.loadFile("index.html");
+  // win.loadURL(
+  //   isDev
+  //     ? 'http://localhost:3000'
+  //     : `file://${path.join(__dirname, './build/index.html')}`
+  // );
+
+   // Hide the menu
+   win.setMenu(null)
+
+
   win.loadURL(
     isDev
       ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, '../build/index.html')}`
-  );
+      : `file://${path.join(__dirname, 'index.html')}`
+);
+
   // Open the DevTools.
   if (isDev) {
     win.webContents.openDevTools({ mode: 'detach' });
   }
 }
+
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

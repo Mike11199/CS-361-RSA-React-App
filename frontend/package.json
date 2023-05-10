@@ -2,6 +2,7 @@
   "name": "react-rsa-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@electron-forge/cli": "^6.0.0-beta.63",
     "@electron-forge/maker-deb": "^6.0.0-beta.63",
@@ -31,7 +32,6 @@
   "main": "public/electron.js",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "set \"BROWSER=none\" && concurrently -k \"npm start\" \"npm run electron\"",
@@ -39,7 +39,9 @@
     "package": "react-scripts build && electron-forge package",
     "make-mac": "react-scripts build && electron-forge make --platform darwin",
     "make-linux": "react-scripts build && electron-forge make --platform linux",
-    "make": "react-scripts build && electron-forge make"
+    "make": "react-scripts build && electron-forge make",
+    "build": "react-scripts build && electron-builder --win portable"
+
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +62,47 @@
     ]
   },
   "devDependencies": {
-    "electron": "^24.2.0"
+    "electron": "^24.2.0",
+    "electron-builder": "^23.6.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "my_electron_app"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
+
+  "build": {
+    "appId": "com.example.myapp",
+    "productName": "My App",
+    "directories": {
+      "output": "build"
+    },
+    "win": {
+      "target": "portable"
+    }
   }
+
+
 }
