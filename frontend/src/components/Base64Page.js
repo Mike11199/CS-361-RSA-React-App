@@ -27,11 +27,13 @@ const Base64Page = () => {
       <li><a href="https://base64.guru/converter/encode/file">File to Base 64 Converter (External Site)</a></li>
    
     </div>    
-    <p style={{marginTop:"50px"}}>test to console.log size and file name</p>
-    <p></p>
+    {/* <p style={{marginTop:"50px"}}>test to console.log size and file name</p>
+    <p></p> */}
     {/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file */}
-    <input style={{marginBottom:"100px"}} type="file" onChange={handleFileInputChange}></input>
+    {/* <input style={{marginBottom:"100px"}} type="file" onChange={handleFileInputChange}></input> */}
+
     </div>
+    <p style={{marginTop: '70px'}}></p>
     <h1>How to Encode/Decode Base64 to Binary and Back with Notepad++</h1>        
     <img src={B6EncodeImage} alt="b64_encode" style={{height: "300px", marginBottom: '20px'}} />
     <p></p>
