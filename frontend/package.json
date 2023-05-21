@@ -100,7 +100,8 @@
       "output": "build"
     },
     "win": {
-      "target": "portable"
+      "target": "portable",
+      "icon": "/src/images/key.png"
     }
   }
 
