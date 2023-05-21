@@ -163,12 +163,12 @@ const RSAPage = () => {
     <div className="pageContainer">
       <h1>RSA Page</h1>
       <p style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
-      RSA Encryption uses a asymmetric cipher, where a different key is used for encryption and decryption.
+      RSA Encryption uses an asymmetric cipher, where a different key is used for encryption and decryption.
       The public key is used for encryption and can be given to anyone, while the private key can only be used for decryption.  This allows secure exchange of an AES key, as only the private key holder can 
       decrypt the message, regardless of who intercepts the ciphertext or public key.
       </p>
       <p style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
-      RSA replies on the fact that it is very difficult and time intensive to factor a number that is a composite of two prime numbers multiplied together.  In 4096 bit
+      RSA relies on the fact that it is very difficult and time intensive to factor a number that is a composite of two prime numbers multiplied together.  In 4096 bit
       encryption, the primes would be each half of that, or 2048 bits, which is a prime number with ~616 digits. With current computers, this would take millions of years
       to brute force if attempting to factor the primes, p and q from the modulus n, which is public. 
       </p>
