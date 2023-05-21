@@ -4,7 +4,8 @@ import { JSEncrypt } from "jsencrypt";  // reference https://bartlomiejmika.com/
 import Wrapper from '../wrappers/RSA.js'  // this is for styled components
 import image from "../images/key screenshot.png"
 import PulseLoader from "react-spinners/PulseLoader";  //REFERENCE : https://www.npmjs.com/package/react-spinners
-
+import RSAImage from '../images/RSA_Image.png'
+import RSAImage_2 from '../images/RSA_Image_2.png'
 
 //reference https://www.npmjs.com/package/react-syntax-highlighter
 // reference https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/prism.html
@@ -161,7 +162,22 @@ const RSAPage = () => {
     <Wrapper>
     <div className="pageContainer">
       <h1>RSA Page</h1>
-      <p>This is the RSA page.</p>
+      <p style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
+      RSA Encryption uses a asymmetric cipher, where a different key is used for encryption and decryption.
+      The public key is used for encryption and can be given to anyone, while the private key can only be used for decryption.  This allows secure exchange of an AES key, as only the private key holder can 
+      decrypt the message, regardless of who intercepts the ciphertext or public key.
+      </p>
+      <p style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>
+      RSA replies on the fact that it is very difficult and time intensive to factor a number that is a composite of two prime numbers multiplied together.  In 4096 bit
+      encryption, the primes would be each half of that, or 2048 bits, which is a prime number with ~616 digits. With current computers, this would take millions of years
+      to brute force if attempting to factor the primes, p and q from the modulus n, which is public. 
+      </p>
+      <p>Reference: https://security.stackexchange.com/questions/37907/how-long-is-a-2048-bit-rsa-key#:~:text=The%202048%20bits%20are%20comparable,between%20616%20and%20617%20digits.</p>
+      <p>Reference: https://en.wikipedia.org/wiki/RSA_(cryptosystem)</p>
+      <img style={{width:"30%",marginBottom: '3%'}} alt='aes' src={RSAImage}></img>
+      <p></p>
+      <img style={{width:"40%",marginBottom: '3%'}} alt='aes' src={RSAImage_2}></img>
+      <p></p>
       <button className="button_orange" onClick={()=> toggleTutorials()}>  
         Toggle Tutorials
      </button>

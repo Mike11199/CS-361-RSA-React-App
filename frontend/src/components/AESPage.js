@@ -6,6 +6,7 @@ import CryptoJS from 'crypto-js';
 // reference https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/prism.html
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import AESImage from '../images/aes.png'
 
 // https://github.com/brix/crypto-js
 // https://www.npmjs.com/package/crypto-js
@@ -168,7 +169,17 @@ const AESPage = () => {
     <Wrapper>
     <div className="pageContainer">
       <h1>AES Page</h1>
-      <p>This is the AES page.</p>
+      <p style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>AES Encryption uses a symmetric cipher, where the same key is used for encryption and decryption.  The algorithms encrypts data in blocks of 16 bytes, or 4x4 matrices.  For a 256 bit key
+        there are 14 rounds of encryption, where the key is XOR'd with the block, rows and columns in the block are shifted in a specific pattern, and the old key is XOR'd with the new matrix to generate
+        a different key for the next round. 
+      </p>
+      <p style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>The key space for AES encryption is 2^255 keys.  As such, a hypothetical computer that could
+      try 2^26 keys a second, or 2,117.8 trillion keys in a year would take 2.73*10^61 years to brute force the encryption, or 27 trillion trillion trillion trillion trillion years.
+      </p>
+      <p>Reference: https://www.simplilearn.com/tutorials/cryptography-tutorial/aes-encryption</p>
+      <p>Reference: https://scrambox.com/article/brute-force-aes/</p>
+      <img style={{marginBottom: '3%'}} alt='aes' src={AESImage}></img>
+      <p></p>
       <button className="button_orange" onClick={()=> toggleTutorials()}>Toggle Tutorials</button>
       <div style={{marginTop: '3%'}}></div>
       <button className="button_purple" onClick={()=> generateAESKey()}>Generate New AES Key</button>
