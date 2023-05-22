@@ -1,3 +1,9 @@
+# Video Demo
+
+- Explains how project satisfies all 8 CSH Cognitive Style Heuristics and one new quality attribute.
+
+https://www.youtube.com/watch?v=MQKmV63Wfbk&ab_channel=osu-videos-iwanekm
+
 # RSA-React-App Portable Windows - Electron.js
 
 - Download the .exe from the link below - also available under releases:
