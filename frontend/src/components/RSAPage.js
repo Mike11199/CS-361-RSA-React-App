@@ -221,15 +221,8 @@ const RSAPage = () => {
       /> 
       </button>
       <button className="button_red" onClick={()=> generateRSAKeysSample()} style={{marginLeft:"30px", width:"250px"}}>
-      {LoadingForSpinner ? "" : "Use Demo Key Pair"}
+      {"Use Demo Key Pair"}
         {/* REFERENCE https://www.davidhu.io/react-spinners/storybook/?path=/docs/pulseloader--main */} 
-        <PulseLoader  
-        loading={LoadingForSpinner}
-        color="#FFFFFF"
-        size={10}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      /> 
       </button>
   
       <button className="button_gray" onClick={()=> setToggleHelpRSA_1(!ToggleHelpRSA_1)} disabled={LoadingForSpinner}>?</button>
