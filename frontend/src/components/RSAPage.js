@@ -6,6 +6,8 @@ import image from "../images/key screenshot.png"
 import PulseLoader from "react-spinners/PulseLoader";  //REFERENCE : https://www.npmjs.com/package/react-spinners
 import RSAImage from '../images/RSA_Image.png'
 import RSAImage_2 from '../images/RSA_Image_2.png'
+import { samplePrivateKeyText, samplePublicKeyText } from './SampleKeys.js';
+
 
 //reference https://www.npmjs.com/package/react-syntax-highlighter
 // reference https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/prism.html
@@ -71,6 +73,31 @@ const RSAPage = () => {
       setLoadingForSpinner(false);
     }, 0);
 
+  }
+
+  
+  const generateRSAKeysSample = () => {
+  
+    //check to make sure user does not overwrite old keys on accident
+    // https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm
+    // ok = true/ cancel = false
+    if (privateKey || publicKey) {
+      if (window.confirm("Are you sure you want to overwrite existing fields?")) {
+        window.alert("Generating your keys!");
+        setPrivateKey("");
+        setPublicKey("");
+      }
+      else{
+        window.alert("Canceled key pair generation!");
+        return;
+      }
+    }
+
+      //const samplePrivateKey = ""
+      //const samplePublicKey=""
+
+      setPrivateKey(samplePrivateKeyText);
+      setPublicKey(samplePublicKeyText);
   }
 
 
@@ -172,8 +199,7 @@ const RSAPage = () => {
       encryption, the primes would be each half of that, or 2048 bits, which is a prime number with ~616 digits. With current computers, this would take millions of years
       to brute force if attempting to factor the primes, p and q from the modulus n, which is public. 
       </p>
-      <p>Reference: https://security.stackexchange.com/questions/37907/how-long-is-a-2048-bit-rsa-key#:~:text=The%202048%20bits%20are%20comparable,between%20616%20and%20617%20digits.</p>
-      <p>Reference: https://en.wikipedia.org/wiki/RSA_(cryptosystem)</p>
+      <p style={{marginBottom: '3%'}}>Reference: &nbsp; <a href=" https://en.wikipedia.org/wiki/RSA_(cryptosystem)"> https://en.wikipedia.org/wiki/RSA_(cryptosystem)</a></p>      
       <img style={{width:"30%",marginBottom: '3%'}} alt='aes' src={RSAImage}></img>
       <p></p>
       <img style={{width:"40%",marginBottom: '3%'}} alt='aes' src={RSAImage_2}></img>
@@ -194,6 +220,17 @@ const RSAPage = () => {
         data-testid="loader"
       /> 
       </button>
+      <button className="button_red" onClick={()=> generateRSAKeysSample()} style={{marginLeft:"30px", width:"250px"}}>
+      {LoadingForSpinner ? "" : "Use Demo Key Pair"}
+        {/* REFERENCE https://www.davidhu.io/react-spinners/storybook/?path=/docs/pulseloader--main */} 
+        <PulseLoader  
+        loading={LoadingForSpinner}
+        color="#FFFFFF"
+        size={10}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      /> 
+      </button>
   
       <button className="button_gray" onClick={()=> setToggleHelpRSA_1(!ToggleHelpRSA_1)} disabled={LoadingForSpinner}>?</button>
       {ToggleHelpRSA_1 && (
@@ -203,6 +240,7 @@ const RSAPage = () => {
           <li> This generates a 4096 bit RSA Private Key and Public Key Pair.  You need to save these to use them in the future.</li>
           <li> The public key can be given to multiple users, while the private key must be kept safe.</li>
           <li> <strong style={{color: "red"}}>Warning! </strong>Generation can take up to 10-20 seconds due to the large 4096 bit key size!</li>
+          <li> Use the demo button to instantly populate the keys with a hardcoded pair for testing purposes.</li>
           </div>
           <br></br>
           <br></br>

@@ -176,8 +176,8 @@ const AESPage = () => {
       <p style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>The key space for AES encryption is 2^255 keys.  As such, a hypothetical computer that could
       try 2^26 keys a second, or 2,117.8 trillion keys in a year would take 2.73*10^61 years to brute force the encryption, or 27 trillion trillion trillion trillion trillion years.
       </p>
-      <p>Reference: https://www.simplilearn.com/tutorials/cryptography-tutorial/aes-encryption</p>
-      <p>Reference: https://scrambox.com/article/brute-force-aes/</p>
+      <p>Reference: &nbsp; <a href="https://www.simplilearn.com/tutorials/cryptography-tutorial/aes-encryption"> https://www.simplilearn.com/tutorials/cryptography-tutorial/aes-encryption</a></p>      
+      <p style={{marginBottom: '3%'}}>Reference: &nbsp; <a href="https://scrambox.com/article/brute-force-aes/"> https://scrambox.com/article/brute-force-aes/</a></p>      
       <img style={{marginBottom: '3%'}} alt='aes' src={AESImage}></img>
       <p></p>
       <button className="button_orange" onClick={()=> toggleTutorials()}>Toggle Tutorials</button>
