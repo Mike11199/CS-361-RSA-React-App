@@ -169,7 +169,7 @@ const AESPage = () => {
     <Wrapper>
     <div className="pageContainer">
       <h1>AES Page</h1>
-      <p style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>AES Encryption uses a symmetric cipher, where the same key is used for encryption and decryption.  The algorithms encrypts data in blocks of 16 bytes, or 4x4 matrices.  For a 256 bit key
+      <p style={{width:"60%", display:"inline-block", alignItems: "center", verticalAlign: "middle"}}>AES Encryption uses a symmetric cipher, where the same key is used for encryption and decryption.  The algorithm encrypts data in blocks of 16 bytes, or 4x4 matrices.  For a 256 bit key
         there are 14 rounds of encryption, where the key is XOR'd with the block, rows and columns in the block are shifted in a specific pattern, and the old key is XOR'd with the new matrix to generate
         a different key for the next round. 
       </p>
