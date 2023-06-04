@@ -11,6 +11,7 @@ https://www.youtube.com/watch?v=MQKmV63Wfbk&ab_channel=osu-videos-iwanekm
 - Unfortunately this is 150 MB due to having to package chromium into the entire release
 - Use 'npm run build' to build the EXE file in the frontend folder of the 'electron' branch.
 
+![image](https://github.com/Mike11199/CS-361-RSA-React-App/assets/91037796/cd2ce6d7-4c71-4737-b651-1383afe6cbe9)
 
 
 # RSA-React-App - Online Version
